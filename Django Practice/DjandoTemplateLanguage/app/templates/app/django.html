@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello Django Template language</h1>
+    {% comment %} Example-1 Variable {% endcomment %}
+    {% comment %} <h2>Name: {{name}}</h2> {% endcomment %}
+
+    {% comment %} example 1.2  {% endcomment %}
+    {% comment %} <h3>Name: {{nm}}</h3>
+    <h3>Duartion: {{du}}</h3>
+    <h3>Seats: {{'st'}}</h3> {% endcomment %}
+
+    <!--Filters : to apply iflter usr epipe sign-->
+    {% comment %} <h2>Filters</h2>
+    <h3>Name: {{name | upper}}</h3>
+    <h3>Description: {{description | truncatewords:3}}</h3>
+    <h3>Description: {{description | upper | truncatewords:3}}</h3>
+
+    <h3>Name: {{name | lower}}</h3>
+    <h3>Name: {{name | capfirst}}</h3>
+    <h3>Name: {{name | default:'nothing'}}</h3>
+    <h3>Name: {{name | length}}</h3>
+    <h3>Name: {{name | slice:"2"}}</h3>
+    <h3>Name: {{name | truncatechars:3}}</h3> {% endcomment %}
+
+    <!--datetime-->
+    {% comment %} <h3>Date & Time : {{dt}}</h3>
+    <h2>{{dt|date}}</h2>
+    <h2>{{dt|date:'D d M Y'}}</h2>
+    <h2>{{dt|time}}</h2>
+    <h2>{{dt|date:'SHORT_DATE_FORMAT'}}</h2>
+    <h2>{{dt|time:'TIME_FORMAT'}}</h2> {% endcomment %}
+
+    <!--floatformat-->
+    {% comment %} <h2>Float Format</h2>
+    <h3>{{p1}}</h3>
+    <h3>{{p2}}</h3>
+    <h3>{{p3}}</h3>
+
+    <h3>{{p1|floatformat}}</h3>
+    <h3>{{p2|floatformat}}</h3>
+    <h3>{{p3|floatformat}}</h3>
+
+    <h3>{{p1|floatformat:3}}</h3>
+    <h3>{{p2|floatformat:3}}</h3>
+    <h3>{{p3|floatformat:3}}</h3>
+
+    <h3>{{p1|floatformat:0}}</h3>
+    <h3>{{p2|floatformat:0}}</h3>
+    <h3>{{p3|floatformat:0}}</h3>
+
+    
+    <h3>{{p1|floatformat:-3}}</h3>
+    <h3>{{p2|floatformat:-3}}</h3>
+    <h3>{{p3|floatformat:-3}}</h3> {% endcomment %}
+
+    <!--if tag 5.1-->
+{% comment %} 
+    {% if nm %}
+    <h3>Hello {{nm}} Anuj</h3>
+    {% endif %} {% endcomment %}
+
+    <!--if tag 5.2-->
+    {% comment %} {% if nm and st %}
+    <h3>Name: {{nm}} Seats: {{st}}</h3>
+    {% endif %}
+
+    {% if nm or st %}
+    <h3>Name: {{nm}} Seats: {{st}}</h3>
+    {% endif %} {% endcomment %}
+
+    {% comment %} {% if nm == 'Django' %}  <!--if i used anything else instead of django it will show empty screen-->
+    <h3>Name: {{nm}} Seats: {{st}}</h3>
+    {% endif %} {% endcomment %}
+{% comment %} 
+    {% if nm == 'Django' and st == 5 %}  <!--if i used anything else instead of django and 5 it will show empty screen-->
+    <h3>Name: {{nm}} Seats: {{st}}</h3>
+    {% endif %} {% endcomment %}
+
+
+    {% comment %} {% if nm|length > 4 %}
+    <h3>Name: {{nm}} Seats: {{st}}</h3>
+    {% endif %}  {% endcomment %}
+
+
+
+
+    <!--if else-->
+    {% comment %} <h2>If-else</h2>
+    {% if nm == 'Django' %}
+    <h3>Name: {{nm}} </h3>
+    {% elif st == 5 %}
+    <h3>Seats:{{st}}</h3>
+    {% else %}
+    <h3>No Seats or Course Avalaible</h3>
+    {% endif %}  {% endcomment %}
+
+    <!--For Loop-->
+    {% comment %} <h2>For Loop</h2>
+     <ul>
+        {% for name in  names %}
+        <li>
+            {{name}}
+        </li>
+        {% endfor %}
+    </ul> {% endcomment %}
+{% comment %} 
+    <ul>
+        {% for name in  names reversed %}
+        <li>
+            {{name}}
+        </li>
+    
+        {% endfor %}
+    </ul> {% endcomment %}
+    
+    {% comment %} <ul>
+        {% for name in  names reversed %}
+        <li>
+            {{name}}
+        </li>
+        {% empty %}
+        <h2>Yaha kuch nahi he</h2>
+        {% endfor %}
+    </ul> {% endcomment %}
+
+
+        {% comment %} {% for name in  names %}
+        {{forloop.counter}} {{name}} <br>
+        {% endfor %} {% endcomment %}
+   
+    {% comment %} <!---mor data-->
+    <h3>{{student}}</h3>
+    <h3>{{student.stu1}}</h3>
+    <h3>{{student.stu2.name}}</h3>
+    <h3>{{student.stu3.roll}}</h3> {% endcomment %}
+
+    <!--more data-2-->
+    {% comment %} <h3>{{student}}</h3>
+    {% for key, value in student.items %}
+    {{key}} - {{value}} <br>
+    {% endfor %} {% endcomment %}
+
+    <!--more data-3 -->
+    <h3>{{student}}</h3>
+    {% for key, value in student.items %}
+    {{key}} - {{value}} <br/>
+    {% for k, v in value.items  %}
+    {{k}} - {{v}} <br>
+    
+    {% endfor %}
+    {% endfor %}
+
+    {% for key, value in student.items  %}
+    {% for k, v in value.items  %}
+    {{froloop.parentloop.counter}} {{k}} = {{v}} <br>
+    {% endfor %}
+    
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
